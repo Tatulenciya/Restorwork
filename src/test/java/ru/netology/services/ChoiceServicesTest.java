@@ -2,6 +2,8 @@ package ru.netology.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 
 public class ChoiceServicesTest {
@@ -27,5 +29,17 @@ public class ChoiceServicesTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/ru.netology.services/ChoiceService.csv")
+    public void parametersTest(int expected, int income, int expenses, int thresold) {
+        ChoiceServices services = new ChoiceServices();
+
+        int actual = services.calculate(income, expenses, thresold);
+
+        Assertions.assertEquals(expected, actual);
+
+    }
     
+
 }
